@@ -143,12 +143,16 @@ static void async_release_job(ASYNC_JOB *job) {
     sk_ASYNC_JOB_push(pool->jobs, job);
 }
 
+int foo() {
+	return 1;
+}
+
 void async_start_func(void)
 {
     ASYNC_JOB *job;
     async_ctx *ctx = async_get_ctx();
 
-    while (1) {
+    while (foo()) {
         /* Run the job */
         job = ctx->currjob;
         job->ret = job->func(job->funcargs);
